@@ -1,11 +1,10 @@
 from app.plantillas import bienvenida_messages
 
-def GenerateMessage(messageUser, number, name):
+def GenerateMessage(number, name, messageUser):
     
     
     data = None
-      
+    data = bienvenida_messages.TextPresentacion(number, name, messageUser)
 
-    data = bienvenida_messages.TextPresentacion(number, name)
     return data
     

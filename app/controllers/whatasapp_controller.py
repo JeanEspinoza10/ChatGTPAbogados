@@ -3,6 +3,7 @@ import os
 from app.utils.obtencion_messages import GetTextUser
 from app.utils.generate_messages import GenerateMessage
 from app.utils.send_messages import SendMessageWhatsapp
+import openai
 
 class Webhook:
     def VerifyToken(query):
@@ -25,22 +26,22 @@ class Webhook:
             
             #Obtener el texto y el numero telefonico
             body = query.get_json()
-            print(body)
+            
             entry = (body["entry"])[0]
             changes = (entry["changes"])[0]
             value = (changes["value"])
             message = (value["messages"])[0]
             number = message["from"]
             text = GetTextUser(message)
-    
+            
             # Obtener el perfil
             contacts = (value["contacts"])[0]
             profile = contacts["profile"]
             name = profile["name"]
 
-
+           
             # Obtencion del formato de envio
-            data = GenerateMessage(text, number, name)
+            data = GenerateMessage(number, name,text)
             
             for dato in data:
                 # Envio de mensaje

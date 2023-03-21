@@ -17,6 +17,6 @@ def GetTextUser(message):
     else:
         print("sin mensaje")
     
-    return 
+    return  text
 
     
